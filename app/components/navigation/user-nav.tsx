@@ -2,21 +2,22 @@
 
 import { CaretSortIcon } from "@radix-ui/react-icons";
 import { Button } from "../ui/button";
-import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
-import { Command, CommandGroup, CommandItem } from "../ui/command";
 import { useState } from "react";
 import { ProfileAvatar } from "../profile/avatar";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "../ui/dropdown-menu";
 
 export function UserNav() {
-  const [open, setOpen] = useState(false);
-
   return (
-    <Popover open={open} onOpenChange={setOpen}>
-      <PopoverTrigger asChild>
+    <DropdownMenu>
+      <DropdownMenuTrigger asChild>
         <Button
           variant="outline"
           role="combobox"
-          aria-expanded={open}
           className="flex justify-between w-max"
         >
           <div className="flex flex-row items-center gap-2">
@@ -33,15 +34,13 @@ export function UserNav() {
 
           <CaretSortIcon className="ml-2 h-4 w-4 shrink-0 opacity-50" />
         </Button>
-      </PopoverTrigger>
+      </DropdownMenuTrigger>
 
-      <PopoverContent className="w-full p-0">
-        <Command>
-          <CommandGroup>
-            <CommandItem>Log out</CommandItem>
-          </CommandGroup>
-        </Command>
-      </PopoverContent>
-    </Popover>
+      <DropdownMenuContent align="end">
+        <DropdownMenuItem>Profile</DropdownMenuItem>
+
+        <DropdownMenuItem>Log out</DropdownMenuItem>
+      </DropdownMenuContent>
+    </DropdownMenu>
   );
 }

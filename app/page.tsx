@@ -1,11 +1,13 @@
-import { ModeToggle } from "./components/mode-toggle";
+import Link from "next/link";
+import { Button } from "./components/ui/button";
 
 export default function Home() {
   return (
     <main>
-      <div className="flex flex-col w-full justify-center">
-        <ModeToggle />
-        <h1 className="text-4xl">Welcome</h1>
+      <div className="flex justify-center pt-4">
+        <Link href="/login">
+          <Button>Log in</Button>
+        </Link>
       </div>
     </main>
   );
