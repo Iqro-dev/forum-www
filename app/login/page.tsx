@@ -1,49 +1,52 @@
-"use client";
+'use client'
 
-import { Button } from "../components/ui/button";
+import { Button } from '../components/ui/button'
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "../components/ui/card";
-import { Input } from "../components/ui/input";
-import { Label } from "../components/ui/label";
-import * as z from "zod";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
+} from '../components/ui/card'
+import { Input } from '../components/ui/input'
+import * as z from 'zod'
+import { useForm } from 'react-hook-form'
+import { zodResolver } from '@hookform/resolvers/zod'
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
   FormMessage,
-} from "../components/ui/form";
+} from '../components/ui/form'
+import { useRouter } from 'next/navigation'
 
 export default function Login() {
+  const router = useRouter()
+
   const formSchema = z.object({
     email: z.string().email({
-      message: "Please enter a valid email address",
+      message: 'Please enter a valid email address',
     }),
     password: z.string().min(8, {
-      message: "Password must be at least 8 characters long",
+      message: 'Password must be at least 8 characters long',
     }),
-  });
+  })
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      email: "",
-      password: "",
+      email: '',
+      password: '',
     },
-  });
+  })
 
   const onSubmit = (values: z.infer<typeof formSchema>) => {
-    console.log(values);
-  };
+    console.log(values)
+
+    router.push('/feed')
+  }
 
   return (
     <div className="flex justify-center items-center pt-[10vw] px-2">
@@ -102,5 +105,5 @@ export default function Login() {
         </CardContent>
       </Card>
     </div>
-  );
+  )
 }
