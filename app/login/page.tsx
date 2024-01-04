@@ -21,6 +21,8 @@ import {
   FormMessage,
 } from '../components/ui/form'
 import { useRouter } from 'next/navigation'
+import { login } from '../api/fetchers/login'
+import { toast } from 'sonner'
 
 export default function Login() {
   const router = useRouter()
@@ -45,9 +47,11 @@ export default function Login() {
   })
 
   const onSubmit = (values: z.infer<typeof formSchema>) => {
-    console.log(values)
+    login(values).then(res => {
+      if (res.statusCode === 401) toast(res.message)
 
-    router.push('/feed')
+      if (!res.error) router.push('/feed')
+    })
   }
 
   return (
@@ -57,7 +61,7 @@ export default function Login() {
           <CardTitle>Log in</CardTitle>
 
           <CardDescription>
-            Simply put in your email and password
+            Simply put in your username and password
           </CardDescription>
         </CardHeader>
 
@@ -72,7 +76,7 @@ export default function Login() {
                 name="username"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Email</FormLabel>
+                    <FormLabel>Username</FormLabel>
 
                     <FormControl>
                       <Input type="username" {...field} />
