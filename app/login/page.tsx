@@ -26,9 +26,11 @@ export default function Login() {
   const router = useRouter()
 
   const formSchema = z.object({
-    email: z.string().email({
-      message: 'Please enter a valid email address',
+    username: z.string({
+      required_error: 'Name is required',
+      invalid_type_error: 'Name must be a string',
     }),
+
     password: z.string().min(8, {
       message: 'Password must be at least 8 characters long',
     }),
@@ -37,7 +39,7 @@ export default function Login() {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      email: '',
+      username: '',
       password: '',
     },
   })
@@ -67,13 +69,13 @@ export default function Login() {
             >
               <FormField
                 control={form.control}
-                name="email"
+                name="username"
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>Email</FormLabel>
 
                     <FormControl>
-                      <Input type="email" {...field} />
+                      <Input type="username" {...field} />
                     </FormControl>
 
                     <FormMessage />
