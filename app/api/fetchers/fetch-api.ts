@@ -28,7 +28,7 @@ export async function fetchApi<T>(
     body: JSON.stringify(data),
   })
 
-  const parsedResponse = (await response.json()) as T & { message: string }
+  const parsedResponse = await response.json()
 
   return parsedResponse
 }

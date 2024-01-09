@@ -21,11 +21,15 @@ import {
   FormMessage,
 } from '../components/ui/form'
 import { useRouter } from 'next/navigation'
-import { login } from '../api/fetchers/login'
-import { toast } from 'sonner'
+import { useAuth } from '../hooks/use-auth'
+import { useToast } from '../components/ui/use-toast'
 
 export default function Login() {
   const router = useRouter()
+
+  const { login } = useAuth()
+
+  const { toast } = useToast()
 
   const formSchema = z.object({
     username: z.string({
@@ -48,7 +52,12 @@ export default function Login() {
 
   const onSubmit = (values: z.infer<typeof formSchema>) => {
     login(values).then(res => {
-      if (res.statusCode === 401) toast(res.message)
+      if (res.statusCode === 401)
+        toast({
+          title: 'Whoops!',
+          description: res.message,
+          variant: 'destructive',
+        })
 
       if (!res.error) router.push('/feed')
     })
