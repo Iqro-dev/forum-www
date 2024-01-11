@@ -33,7 +33,11 @@ export function useAuth() {
       method: HttpMethod.POST,
     })
 
-    if (!response.error) removeAuthCookies()
+    if (response.error) return response
+
+    removeAuthCookies()
+
+    return response
   }
 
   return {

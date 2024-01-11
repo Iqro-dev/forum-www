@@ -1,4 +1,4 @@
-export default function Feed() {
+export default async function Feed() {
   return (
     <div className="flex justify-center pt-4">
       <div className="flex justify-left w-1/3">
