@@ -27,13 +27,13 @@ export function UserNav() {
         return toast({
           title: 'Whoops!',
           description: res.error,
-          status: 'error',
+          variant: 'destructive',
         })
 
       queryClient.clear()
 
       router.push('/')
-      router.refresh
+      router.refresh()
     })
   }
 

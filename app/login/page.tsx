@@ -59,7 +59,10 @@ export default function Login() {
           variant: 'destructive',
         })
 
-      if (!res.error) router.push('/feed')
+      if (!res.error) {
+        router.push('/feed')
+        router.refresh()
+      }
     })
   }
 
