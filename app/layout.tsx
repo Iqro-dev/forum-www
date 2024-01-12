@@ -17,9 +17,7 @@ export const metadata: Metadata = {
 export default async function RootLayout({ children }: LayoutProps) {
   const accessToken = cookies().get(ACCESS_TOKEN)?.value
 
-  const { profile } = await getProfile(accessToken)
-
-  console.log(profile)
+  const profile = await getProfile(accessToken)
 
   return (
     <html lang="en" suppressHydrationWarning>

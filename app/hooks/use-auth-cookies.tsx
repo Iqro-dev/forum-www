@@ -27,8 +27,8 @@ export const useAuthCookies = () => {
       })
     },
     removeAuthCookies: () => {
-      removeCookies(ACCESS_TOKEN)
-      removeCookies(REFRESH_TOKEN)
+      removeCookies(ACCESS_TOKEN, { path: '/' })
+      removeCookies(REFRESH_TOKEN, { path: '/' })
     },
   }
 }

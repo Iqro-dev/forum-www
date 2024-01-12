@@ -1,6 +1,4 @@
-import { Profile } from '.'
-
 export interface User {
-  id: string
-  profile: Profile
+  _id: string
+  username: string
 }

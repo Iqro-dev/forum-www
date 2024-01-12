@@ -9,17 +9,12 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '../ui/dropdown-menu'
-import { Profile } from '@/app/api/types'
 import { useAuth } from '@/app/hooks/use-auth'
 import { toast } from '../ui/use-toast'
 import { useRouter } from 'next/navigation'
 import { useQueryClient } from '@tanstack/react-query'
 
-export interface UserNavProps {
-  profile: Profile
-}
-
-export function UserNav({ profile }: UserNavProps) {
+export function UserNav() {
   const { logout } = useAuth()
 
   const router = useRouter()
@@ -69,7 +64,7 @@ export function UserNav({ profile }: UserNavProps) {
       <DropdownMenuContent align="end">
         <DropdownMenuItem>Profile</DropdownMenuItem>
 
-        <DropdownMenuItem onClick={() => handleLogout}>
+        <DropdownMenuItem onClick={() => handleLogout()}>
           Log out
         </DropdownMenuItem>
       </DropdownMenuContent>

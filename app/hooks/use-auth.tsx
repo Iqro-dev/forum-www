@@ -30,8 +30,10 @@ export function useAuth() {
 
   const logout = async () => {
     const response = await fetchApi<boolean>('/auth/logout', {
-      method: HttpMethod.POST,
+      method: HttpMethod.GET,
     })
+
+    console.log(response)
 
     if (response.error) return response
 

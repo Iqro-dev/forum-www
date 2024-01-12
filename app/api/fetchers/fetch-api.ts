@@ -30,5 +30,5 @@ export async function fetchApi<T>(
 
   const parsedResponse = await response.json()
 
-  return parsedResponse
+  return { ...parsedResponse, ok: !(parsedResponse.statusCode !== undefined) }
 }
