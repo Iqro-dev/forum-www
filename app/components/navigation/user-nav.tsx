@@ -1,6 +1,9 @@
 'use client'
 
 import { CaretSortIcon } from '@radix-ui/react-icons'
+import { useRouter } from 'next/navigation'
+import { useQueryClient } from '@tanstack/react-query'
+
 import { Button } from '../ui/button'
 import { ProfileAvatar } from '../profile/avatar'
 import {
@@ -9,10 +12,9 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '../ui/dropdown-menu'
-import { useAuth } from '@/app/hooks/use-auth'
 import { toast } from '../ui/use-toast'
-import { useRouter } from 'next/navigation'
-import { useQueryClient } from '@tanstack/react-query'
+
+import { useAuth } from '@/app/hooks/use-auth'
 
 export function UserNav() {
   const { logout } = useAuth()
@@ -22,19 +24,19 @@ export function UserNav() {
   const queryClient = useQueryClient()
 
   const handleLogout = async () => {
-    logout().then(res => {
-      if (res.error)
-        return toast({
-          title: 'Whoops!',
-          description: res.error,
-          variant: 'destructive',
-        })
+    const response = await logout()
 
-      queryClient.clear()
+    if (response.error)
+      return toast({
+        title: 'Whoops!',
+        description: response.error,
+        variant: 'destructive',
+      })
 
-      router.push('/')
-      router.refresh()
-    })
+    queryClient.clear()
+
+    router.push('/')
+    router.refresh()
   }
 
   return (

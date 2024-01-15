@@ -1,4 +1,5 @@
 import { User } from '../types'
+
 import { fetchApi } from './fetch-api'
 
 export function getProfile(token?: string) {

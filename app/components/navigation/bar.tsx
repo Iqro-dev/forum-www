@@ -1,7 +1,10 @@
 import Link from 'next/link'
+
 import { ModeToggle } from '../mode-toggle'
-import { UserNav } from './user-nav'
 import { Button } from '../ui/button'
+
+import { UserNav } from './user-nav'
+
 import { User } from '@/app/api/types'
 
 export interface NavbarProps {
