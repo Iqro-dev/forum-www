@@ -1,21 +1,21 @@
 import { HttpMethod } from '../types'
 import { ApiResponse } from '../types/api-response'
 
-export interface FetchApiOptions {
+export interface FetchApiOptions<T = unknown> {
   method?: HttpMethod
   token?: string
   cache?: RequestCache
-  data?: any
+  data?: T
 }
 
-export async function fetchApi<T>(
+export async function fetchApi<T = unknown, D = unknown>(
   path: string,
   {
     method = HttpMethod.GET,
     data,
     token,
     cache = 'force-cache',
-  }: FetchApiOptions = {}
+  }: FetchApiOptions<D> = {}
 ): Promise<ApiResponse<T>> {
   const response = await fetch(process.env.NEXT_PUBLIC_API_URL + path, {
     method,
@@ -28,7 +28,7 @@ export async function fetchApi<T>(
     body: JSON.stringify(data),
   })
 
-  const parsedResponse = await response.json()
+  const parsedResponse = (await response.json()) as T & { statusCode?: number }
 
   return { ...parsedResponse, ok: !(parsedResponse.statusCode !== undefined) }
 }
