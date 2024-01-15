@@ -59,13 +59,6 @@ module.exports = {
   ],
   overrides: [
     {
-      rules: {
-        'sonarjs/no-duplicate-string': 'off',
-        '@typescript-eslint/unbound-method': 'off',
-        '@typescript-eslint/no-unsafe-member-access': 'off',
-      },
-    },
-    {
       files: ['tailwind.config.ts'],
       rules: {
         'sonarjs/no-duplicate-string': 'off',
@@ -86,6 +79,7 @@ module.exports = {
     'tailwind.config.ts',
     'postcss.config.cjs',
     '.eslintrc.cjs',
+    '**/ui/*',
   ],
   rules: {
     'no-undef': 'off',

@@ -1,5 +1,10 @@
 'use client'
 
+import * as z from 'zod'
+import { useForm } from 'react-hook-form'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { useRouter } from 'next/navigation'
+
 import { Button } from '../components/ui/button'
 import {
   Card,
@@ -9,9 +14,6 @@ import {
   CardTitle,
 } from '../components/ui/card'
 import { Input } from '../components/ui/input'
-import * as z from 'zod'
-import { useForm } from 'react-hook-form'
-import { zodResolver } from '@hookform/resolvers/zod'
 import {
   Form,
   FormControl,
@@ -20,7 +22,6 @@ import {
   FormLabel,
   FormMessage,
 } from '../components/ui/form'
-import { useRouter } from 'next/navigation'
 import { useAuth } from '../hooks/use-auth'
 import { useToast } from '../components/ui/use-toast'
 
@@ -50,20 +51,18 @@ export default function Login() {
     },
   })
 
-  const onSubmit = (values: z.infer<typeof formSchema>) => {
-    login(values).then(res => {
-      if (res.statusCode === 401)
-        toast({
-          title: 'Whoops!',
-          description: res.message,
-          variant: 'destructive',
-        })
+  const onSubmit = async (values: z.infer<typeof formSchema>) => {
+    const response = await login(values)
 
-      if (!res.error) {
-        router.push('/feed')
-        router.refresh()
-      }
-    })
+    if (response.error)
+      return toast({
+        title: 'Whoops!',
+        description: response.error,
+        variant: 'destructive',
+      })
+
+    router.push('/')
+    router.refresh()
   }
 
   return (

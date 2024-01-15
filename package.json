@@ -6,7 +6,10 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "lint:js": "eslint --ext \".js,.ts,.md,.jsx,.tsx,.mdx\" --ignore-path .gitignore --resolve-plugins-relative-to .",
+    "lint:fix": "yarn lint --fix",
+    "format": "prettier --write ."
   },
   "dependencies": {
     "@hookform/resolvers": "^3.3.2",
