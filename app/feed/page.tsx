@@ -1,4 +1,11 @@
+import { redirect } from 'next/navigation'
+
+import { isAuthenticated } from '@/utils'
+
 export default function Feed() {
+  console.log(isAuthenticated())
+  if (!isAuthenticated()) return redirect('/login')
+
   return (
     <div className="flex justify-center pt-4">
       <div className="flex justify-left w-1/3">

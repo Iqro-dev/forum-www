@@ -20,7 +20,7 @@ export function Navbar({ profile }: NavbarProps) {
 
       <div className="flex flex-row gap-2 justify-center items-center">
         {profile?.username ? (
-          <UserNav />
+          <UserNav profile={profile} />
         ) : (
           <Link href="/login">
             <Button>Log in</Button>
