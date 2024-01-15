@@ -1,7 +1,8 @@
-import { useAuthCookies } from '@/app/hooks/use-auth-cookies'
 import { HttpMethod } from '../api/types'
 import { SecretData } from '../api/types/secret-data'
 import { fetchApi } from '../api/fetchers/fetch-api'
+
+import { useAuthCookies } from '@/app/hooks/use-auth-cookies'
 
 export interface LoginProps {
   username: string
@@ -20,10 +21,8 @@ export function useAuth() {
 
     if (response.error) return response
 
-    if (response) {
-      setAuthAccessCookies(response.accessToken)
-      setAuthRefreshCookies(response.refreshToken)
-    }
+    setAuthAccessCookies(response.accessToken)
+    setAuthRefreshCookies(response.refreshToken)
 
     return response
   }
