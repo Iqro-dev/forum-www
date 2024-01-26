@@ -15,8 +15,13 @@ import {
 import { toast } from '../ui/use-toast'
 
 import { useAuth } from '@/app/hooks/use-auth'
+import { User } from '@/app/api/types'
 
-export function UserNav() {
+export interface UserNavProps {
+  profile?: User
+}
+
+export function UserNav({ profile }: UserNavProps) {
   const { logout } = useAuth()
 
   const router = useRouter()
@@ -55,7 +60,7 @@ export function UserNav() {
             />
 
             <span className="truncate max-w-[75px] md:max-w-[100px]">
-              Username
+              {profile?.username}
             </span>
           </div>
 

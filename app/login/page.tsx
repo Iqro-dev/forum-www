@@ -57,11 +57,11 @@ export default function Login() {
     if (response.error)
       return toast({
         title: 'Whoops!',
-        description: response.error,
+        description: response.message,
         variant: 'destructive',
       })
 
-    router.push('/')
+    router.push('/feed')
     router.refresh()
   }
 
