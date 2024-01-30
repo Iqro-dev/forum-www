@@ -41,8 +41,23 @@ export function useAuth() {
     return response
   }
 
+  const register = async (credentials: LoginProps) => {
+    const response = await fetchApi<SecretData>('/auth/register', {
+      data: credentials,
+      method: HttpMethod.POST,
+    })
+
+    if (response.error) return response
+
+    setAuthAccessCookies(response.accessToken)
+    setAuthRefreshCookies(response.refreshToken)
+
+    return response
+  }
+
   return {
     login,
     logout,
+    register,
   }
 }

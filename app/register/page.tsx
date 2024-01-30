@@ -1,7 +1,7 @@
 'use client'
 
-import * as z from 'zod'
 import { useForm } from 'react-hook-form'
+import * as z from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
@@ -9,29 +9,29 @@ import Link from 'next/link'
 import { Button } from '../components/ui/button'
 import {
   Card,
-  CardContent,
-  CardDescription,
   CardHeader,
   CardTitle,
+  CardDescription,
+  CardContent,
 } from '../components/ui/card'
-import { Input } from '../components/ui/input'
 import {
-  Form,
-  FormControl,
   FormField,
   FormItem,
   FormLabel,
+  FormControl,
   FormMessage,
+  Form,
 } from '../components/ui/form'
 import { useAuth } from '../hooks/use-auth'
+import { Input } from '../components/ui/input'
 import { useToast } from '../components/ui/use-toast'
 
-export default function LoginPage() {
-  const router = useRouter()
-
-  const { login } = useAuth()
+export default function RegisterPage() {
+  const { register } = useAuth()
 
   const { toast } = useToast()
+
+  const router = useRouter()
 
   const formSchema = z.object({
     username: z.string({
@@ -53,7 +53,7 @@ export default function LoginPage() {
   })
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
-    const response = await login(values)
+    const response = await register(values)
 
     if (response.error)
       return toast({
@@ -70,14 +70,14 @@ export default function LoginPage() {
     <div className="flex justify-center items-center pt-[10vw] px-2">
       <Card className="border-border w-80">
         <CardHeader className="pb-2">
-          <CardTitle>Log in</CardTitle>
+          <CardTitle>Sign up</CardTitle>
 
           <CardDescription>
-            <span>Don&apos;t have an account?</span>
+            <span>Already have an account?</span>
 
-            <Link href="/register">
+            <Link href="/login">
               <Button variant="link" className="p-0 m-0 px-1">
-                Sign up
+                Log in
               </Button>
             </Link>
           </CardDescription>
@@ -122,7 +122,7 @@ export default function LoginPage() {
               />
 
               <Button type="submit" className="w-full">
-                Log in
+                Sign up
               </Button>
             </form>
           </Form>

@@ -2,8 +2,7 @@ import { redirect } from 'next/navigation'
 
 import { isAuthenticated } from '@/utils'
 
-export default function Feed() {
-  console.log(isAuthenticated())
+export default function FeedPage() {
   if (!isAuthenticated()) return redirect('/login')
 
   return (
