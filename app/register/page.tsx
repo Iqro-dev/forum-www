@@ -39,6 +39,13 @@ export default function RegisterPage() {
       invalid_type_error: 'Name must be a string',
     }),
 
+    email: z
+      .string({
+        required_error: 'Email is required',
+        invalid_type_error: 'Email must be a string',
+      })
+      .email({ message: 'Invalid email' }),
+
     password: z.string().min(8, {
       message: 'Password must be at least 8 characters long',
     }),
@@ -49,6 +56,7 @@ export default function RegisterPage() {
     defaultValues: {
       username: '',
       password: '',
+      email: '',
     },
   })
 
@@ -68,7 +76,7 @@ export default function RegisterPage() {
 
   return (
     <div className="flex justify-center items-center pt-[10vw] px-2">
-      <Card className="border-border w-80">
+      <Card className="border-border w-96">
         <CardHeader className="pb-2">
           <CardTitle>Sign up</CardTitle>
 
@@ -89,6 +97,22 @@ export default function RegisterPage() {
               onSubmit={form.handleSubmit(onSubmit)}
               className="flex flex-col gap-6"
             >
+              <FormField
+                control={form.control}
+                name="email"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Email</FormLabel>
+
+                    <FormControl>
+                      <Input type="email" {...field} />
+                    </FormControl>
+
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
               <FormField
                 control={form.control}
                 name="username"
