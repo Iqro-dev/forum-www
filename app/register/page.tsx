@@ -1,3 +1,5 @@
+// eslint-disable-next-line eslint-comments/disable-enable-pair
+/* eslint-disable @typescript-eslint/no-unnecessary-condition */
 'use client'
 
 import { useForm } from 'react-hook-form'
@@ -5,7 +7,10 @@ import * as z from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
+import { CalendarIcon } from '@radix-ui/react-icons'
+import { format } from 'date-fns'
 
+import { Calendar } from '../components/ui/calendar'
 import { Button } from '../components/ui/button'
 import {
   Card,
@@ -25,6 +30,13 @@ import {
 import { useAuth } from '../hooks/use-auth'
 import { Input } from '../components/ui/input'
 import { useToast } from '../components/ui/use-toast'
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from '../components/ui/popover'
+
+import { cn } from '@/utils'
 
 export default function RegisterPage() {
   const { register } = useAuth()
@@ -34,10 +46,12 @@ export default function RegisterPage() {
   const router = useRouter()
 
   const formSchema = z.object({
-    username: z.string({
-      required_error: 'Name is required',
-      invalid_type_error: 'Name must be a string',
-    }),
+    username: z
+      .string({
+        required_error: 'Name is required',
+        invalid_type_error: 'Name must be a string',
+      })
+      .min(5, { message: 'Must be 5 or more characters' }),
 
     email: z
       .string({
@@ -49,6 +63,11 @@ export default function RegisterPage() {
     password: z.string().min(8, {
       message: 'Password must be at least 8 characters long',
     }),
+
+    dateOfBirth: z.date({
+      required_error: 'Date of birth is required',
+      invalid_type_error: 'Date of birth must be a date',
+    }),
   })
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -57,6 +76,7 @@ export default function RegisterPage() {
       username: '',
       password: '',
       email: '',
+      dateOfBirth: new Date(),
     },
   })
 
@@ -139,6 +159,51 @@ export default function RegisterPage() {
                     <FormControl>
                       <Input type="password" {...field} />
                     </FormControl>
+
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              <FormField
+                control={form.control}
+                name="dateOfBirth"
+                render={({ field }) => (
+                  <FormItem className="flex flex-col">
+                    <FormLabel>Date of birth</FormLabel>
+
+                    <Popover>
+                      <PopoverTrigger asChild>
+                        <FormControl>
+                          <Button
+                            variant={'outline'}
+                            className={cn(
+                              'w-[240px] pl-3 text-left font-normal',
+                              !field.value && 'text-muted-foreground'
+                            )}
+                          >
+                            {field.value ? (
+                              format(field.value, 'PPP')
+                            ) : (
+                              <span>Pick a date</span>
+                            )}
+                            <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
+                          </Button>
+                        </FormControl>
+                      </PopoverTrigger>
+
+                      <PopoverContent className="w-auto p-0" align="start">
+                        <Calendar
+                          mode="single"
+                          selected={field.value}
+                          onSelect={field.onChange}
+                          disabled={date =>
+                            date > new Date() || date < new Date('1900-01-01')
+                          }
+                          initialFocus
+                        />
+                      </PopoverContent>
+                    </Popover>
 
                     <FormMessage />
                   </FormItem>

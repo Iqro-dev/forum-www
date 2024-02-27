@@ -1,9 +1,13 @@
+'use server'
+
 import { redirect } from 'next/navigation'
 
 import { isAuthenticated } from '@/utils'
 
-export default function FeedPage() {
-  if (!isAuthenticated()) return redirect('/login')
+export default async function FeedPage() {
+  const authenticated = await isAuthenticated()
+
+  if (!authenticated) return redirect('/login')
 
   return (
     <div className="flex justify-center pt-4">

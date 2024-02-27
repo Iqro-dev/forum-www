@@ -6,7 +6,9 @@ import { useAuthCookies } from '@/app/hooks/use-auth-cookies'
 
 export interface LoginProps {
   username: string
+  email: string
   password: string
+  dateOfBirth?: Date
 }
 
 export function useAuth() {
