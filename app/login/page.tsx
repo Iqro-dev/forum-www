@@ -4,6 +4,8 @@ import * as z from 'zod'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useRouter } from 'next/navigation'
+import Link from 'next/link'
+import { ReloadIcon } from '@radix-ui/react-icons'
 
 import { Button } from '../components/ui/button'
 import {
@@ -24,9 +26,12 @@ import {
 } from '../components/ui/form'
 import { useAuth } from '../hooks/use-auth'
 import { useToast } from '../components/ui/use-toast'
+import { useState } from 'react'
 
-export default function Login() {
+export default function LoginPage() {
   const router = useRouter()
+
+  const [loading, setLoading] = useState(false)
 
   const { login } = useAuth()
 
@@ -52,14 +57,19 @@ export default function Login() {
   })
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
+    setLoading(true)
+
     const response = await login(values)
 
-    if (response.error)
+    if (response.error) {
+      setLoading(false)
+
       return toast({
         title: 'Whoops!',
         description: response.message,
         variant: 'destructive',
       })
+    }
 
     router.push('/feed')
     router.refresh()
@@ -68,11 +78,17 @@ export default function Login() {
   return (
     <div className="flex justify-center items-center pt-[10vw] px-2">
       <Card className="border-border w-80">
-        <CardHeader>
+        <CardHeader className="pb-2">
           <CardTitle>Log in</CardTitle>
 
           <CardDescription>
-            Simply put in your username and password
+            <span>Don&apos;t have an account?</span>
+
+            <Link href="/register">
+              <Button variant="link" className="p-0 m-0 px-1">
+                Sign up
+              </Button>
+            </Link>
           </CardDescription>
         </CardHeader>
 
@@ -114,8 +130,12 @@ export default function Login() {
                 )}
               />
 
-              <Button type="submit" className="w-full">
-                Log in
+              <Button type="submit" className="w-full" disabled={loading}>
+                {loading ? (
+                  <ReloadIcon className="mr-2 h-4 w-4 animate-spin" />
+                ) : (
+                  'Log in'
+                )}
               </Button>
             </form>
           </Form>

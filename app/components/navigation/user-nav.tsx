@@ -16,6 +16,7 @@ import { toast } from '../ui/use-toast'
 
 import { useAuth } from '@/app/hooks/use-auth'
 import { User } from '@/app/api/types'
+import Link from 'next/link'
 
 export interface UserNavProps {
   profile?: User
@@ -69,7 +70,9 @@ export function UserNav({ profile }: UserNavProps) {
       </DropdownMenuTrigger>
 
       <DropdownMenuContent align="end">
-        <DropdownMenuItem>Profile</DropdownMenuItem>
+        <Link href="/profile">
+          <DropdownMenuItem>Profile</DropdownMenuItem>
+        </Link>
 
         <DropdownMenuItem onClick={() => handleLogout()}>
           Log out
