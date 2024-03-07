@@ -15,7 +15,9 @@ export function useAuth() {
   const { setAuthAccessCookies, setAuthRefreshCookies, removeAuthCookies } =
     useAuthCookies()
 
-  const login = async (credentials: LoginProps) => {
+  const login = async (
+    credentials: Pick<LoginProps, 'username' | 'password'>
+  ) => {
     const response = await fetchApi<SecretData>('/auth/login', {
       data: credentials,
       method: HttpMethod.POST,

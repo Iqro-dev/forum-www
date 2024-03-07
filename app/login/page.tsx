@@ -5,6 +5,7 @@ import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
+import { ReloadIcon } from '@radix-ui/react-icons'
 
 import { Button } from '../components/ui/button'
 import {
@@ -25,9 +26,12 @@ import {
 } from '../components/ui/form'
 import { useAuth } from '../hooks/use-auth'
 import { useToast } from '../components/ui/use-toast'
+import { useState } from 'react'
 
 export default function LoginPage() {
   const router = useRouter()
+
+  const [loading, setLoading] = useState(false)
 
   const { login } = useAuth()
 
@@ -53,14 +57,19 @@ export default function LoginPage() {
   })
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
+    setLoading(true)
+
     const response = await login(values)
 
-    if (response.error)
+    if (response.error) {
+      setLoading(false)
+
       return toast({
         title: 'Whoops!',
         description: response.message,
         variant: 'destructive',
       })
+    }
 
     router.push('/feed')
     router.refresh()
@@ -121,8 +130,12 @@ export default function LoginPage() {
                 )}
               />
 
-              <Button type="submit" className="w-full">
-                Log in
+              <Button type="submit" className="w-full" disabled={loading}>
+                {loading ? (
+                  <ReloadIcon className="mr-2 h-4 w-4 animate-spin" />
+                ) : (
+                  'Log in'
+                )}
               </Button>
             </form>
           </Form>
