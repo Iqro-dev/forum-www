@@ -22,9 +22,15 @@ export function Navbar({ profile }: NavbarProps) {
         {profile?.username ? (
           <UserNav profile={profile} />
         ) : (
-          <Link href="/login">
-            <Button>Log in</Button>
-          </Link>
+          <>
+            <Link href="/register">
+              <Button variant="outline">Sign up</Button>
+            </Link>
+
+            <Link href="/login">
+              <Button>Log in</Button>
+            </Link>
+          </>
         )}
 
         <ModeToggle />
