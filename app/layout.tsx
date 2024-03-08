@@ -27,7 +27,7 @@ export default async function RootLayout({ children }: LayoutProps) {
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
             <Navbar profile={profile} />
 
-            {children}
+            <div className="flex justify-center">{children}</div>
 
             <Toaster />
           </ThemeProvider>
