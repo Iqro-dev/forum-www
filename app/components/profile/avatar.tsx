@@ -14,8 +14,12 @@ export function ProfileAvatar({
   className,
 }: ProfileAvatarProps) {
   return (
-    <Avatar className={cn('rounded-full', className)}>
-      <AvatarImage className="rounded-full" src={src} alt={displayName} />
+    <Avatar className="rounded-full">
+      <AvatarImage
+        className={cn('rounded-full', className)}
+        src={src ?? 'https://github.com/shadcn.png'}
+        alt={displayName}
+      />
 
       <AvatarFallback>{displayName?.slice(0, 1)}</AvatarFallback>
     </Avatar>

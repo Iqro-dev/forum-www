@@ -55,7 +55,6 @@ export function UserNav({ profile }: UserNavProps) {
         >
           <div className="flex flex-row items-center gap-2">
             <ProfileAvatar
-              src={'https://github.com/shadcn.png'}
               displayName={'Username'}
               className="bg-black text-white dark:bg-white dark:text-black w-6 h-6 text-base"
             />
