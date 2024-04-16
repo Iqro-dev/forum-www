@@ -15,11 +15,11 @@ import {
 import { toast } from '../ui/use-toast'
 
 import { useAuth } from '@/app/hooks/use-auth'
-import { User } from '@/app/api/types'
+import { Profile } from '@/app/api/types'
 import Link from 'next/link'
 
 export interface UserNavProps {
-  profile?: User
+  profile?: Profile
 }
 
 export function UserNav({ profile }: UserNavProps) {

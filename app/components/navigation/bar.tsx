@@ -5,10 +5,10 @@ import { Button } from '../ui/button'
 
 import { UserNav } from './user-nav'
 
-import { User } from '@/app/api/types'
+import { Profile } from '@/app/api/types'
 
 export interface NavbarProps {
-  profile?: User
+  profile?: Profile
 }
 
 export function Navbar({ profile }: NavbarProps) {
