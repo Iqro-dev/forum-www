@@ -9,6 +9,7 @@ import { LayoutProps } from './types/props'
 import { ACCESS_TOKEN } from './api/constants'
 import { getProfile } from './api/fetchers/get-profile'
 import { RootProviders } from './providers'
+import { TooltipProvider } from './components/ui/tooltip'
 
 export const metadata: Metadata = {
   title: 'Forum',
@@ -25,11 +26,13 @@ export default async function RootLayout({ children }: LayoutProps) {
       <body className="min-h-screen bg-background">
         <RootProviders>
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-            <Navbar profile={profile} />
+            <TooltipProvider>
+              <Navbar profile={profile} />
 
-            {children}
+              <div className="flex justify-center">{children}</div>
 
-            <Toaster />
+              <Toaster />
+            </TooltipProvider>
           </ThemeProvider>
         </RootProviders>
       </body>

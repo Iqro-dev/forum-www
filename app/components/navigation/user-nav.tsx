@@ -15,11 +15,11 @@ import {
 import { toast } from '../ui/use-toast'
 
 import { useAuth } from '@/app/hooks/use-auth'
-import { User } from '@/app/api/types'
+import { Profile } from '@/app/api/types'
 import Link from 'next/link'
 
 export interface UserNavProps {
-  profile?: User
+  profile?: Profile
 }
 
 export function UserNav({ profile }: UserNavProps) {
@@ -55,7 +55,6 @@ export function UserNav({ profile }: UserNavProps) {
         >
           <div className="flex flex-row items-center gap-2">
             <ProfileAvatar
-              src={'https://github.com/shadcn.png'}
               displayName={'Username'}
               className="bg-black text-white dark:bg-white dark:text-black w-6 h-6 text-base"
             />

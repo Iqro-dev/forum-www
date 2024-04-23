@@ -1,9 +1,3 @@
-export default function Home() {
-  return (
-    <main>
-      <div className="flex justify-center pt-4">
-        <div>home page</div>
-      </div>
-    </main>
-  )
+export default async function Home() {
+  return <div className="text-5xl pt-2">Welcome to Forum</div>
 }
