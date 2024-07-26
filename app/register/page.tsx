@@ -2,40 +2,40 @@
 /* eslint-disable @typescript-eslint/no-unnecessary-condition */
 'use client'
 
-import { useForm } from 'react-hook-form'
-import * as z from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { useRouter } from 'next/navigation'
-import Link from 'next/link'
 import { CalendarIcon, ReloadIcon } from '@radix-ui/react-icons'
 import { format } from 'date-fns'
+import Link from 'next/link'
+import { useRouter } from 'next/navigation'
+import { useForm } from 'react-hook-form'
+import * as z from 'zod'
 
-import { Calendar } from '../components/ui/calendar'
 import { Button } from '../components/ui/button'
+import { Calendar } from '../components/ui/calendar'
 import {
   Card,
+  CardContent,
+  CardDescription,
   CardHeader,
   CardTitle,
-  CardDescription,
-  CardContent,
 } from '../components/ui/card'
 import {
+  Form,
+  FormControl,
+  FormDescription,
   FormField,
   FormItem,
   FormLabel,
-  FormControl,
   FormMessage,
-  Form,
-  FormDescription,
 } from '../components/ui/form'
-import { useAuth } from '../hooks/use-auth'
 import { Input } from '../components/ui/input'
-import { useToast } from '../components/ui/use-toast'
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
 } from '../components/ui/popover'
+import { useToast } from '../components/ui/use-toast'
+import { useAuth } from '../hooks/use-auth'
 
 import { cn } from '@/utils'
 import { useState } from 'react'
@@ -104,7 +104,7 @@ export default function RegisterPage() {
   }
 
   return (
-    <div className="flex justify-center items-center pt-[10vw] px-2">
+    <div className="flex justify-center items-center pt-6 pb-6 px-2">
       <Card className="border-border w-96">
         <CardHeader className="pb-2">
           <CardTitle>Sign up</CardTitle>
@@ -230,7 +230,7 @@ export default function RegisterPage() {
                 {loading ? (
                   <ReloadIcon className="mr-2 h-4 w-4 animate-spin" />
                 ) : (
-                  'Log in'
+                  'Sign up'
                 )}
               </Button>
             </form>

@@ -1,6 +1,9 @@
 'use client'
 
+import { Profile } from '@/app/api/types'
+import { Archive, ArchiveX, Trash2 } from 'lucide-react'
 import { ProfileAvatar } from '../profile/avatar'
+import { Button } from '../ui/button'
 import {
   Card,
   CardContent,
@@ -8,12 +11,9 @@ import {
   CardHeader,
   CardTitle,
 } from '../ui/card'
-import { Profile } from '@/app/api/types'
-import { Textarea } from '../ui/textarea'
-import { Button } from '../ui/button'
 import { Separator } from '../ui/separator'
+import { Textarea } from '../ui/textarea'
 import { Tooltip, TooltipContent, TooltipTrigger } from '../ui/tooltip'
-import { Archive, ArchiveX, Trash2 } from 'lucide-react'
 
 export interface CreateArticleProps {
   profile?: Profile
@@ -21,7 +21,7 @@ export interface CreateArticleProps {
 
 export function CreateArticle({ profile }: CreateArticleProps) {
   return (
-    <Card className="md:w-[40vw] md:w-2/4 w-full border-border">
+    <Card className="md:w-2/4 w-full border-border">
       <CardHeader className="flex flex-row items-center gap-2 p-2 px-3">
         <ProfileAvatar className="w-6 h-6" />
 
@@ -72,7 +72,9 @@ export function CreateArticle({ profile }: CreateArticleProps) {
           </Tooltip>
         </div>
 
-        <Button size="default">Submit</Button>
+        <Button size="default" variant="ghost">
+          Submit
+        </Button>
       </CardFooter>
     </Card>
   )
