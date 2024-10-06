@@ -66,7 +66,7 @@ export function CreateArticle({ profile }: CreateArticleProps) {
   }
 
   return (
-    <Card className="md:w-2/4 w-full border-border">
+    <Card className="w-full border-border">
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="w-full">
           <CardHeader className="flex flex-row items-center gap-2 p-2 px-3">

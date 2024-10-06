@@ -8,6 +8,8 @@ import { getArticles } from '../api/fetchers/get-articles'
 import { getProfile } from '../api/fetchers/get-profile'
 import { Profile } from '../api/types'
 import { CreateArticle } from '../components/articles/create-article'
+import { Card, CardContent, CardHeader } from '../components/ui/card'
+import { Separator } from '../components/ui/separator'
 
 export default async function FeedPage() {
   const authenticated = await isAuthenticated()
@@ -24,22 +26,23 @@ export default async function FeedPage() {
   console.log(articles)
 
   return (
-    <main className="flex flex-col items-center w-screen pt-4 gap-4">
-      <section className="md:px-0 px-12 w-full flex justify-center">
+    <main className="flex flex-col items-center w-screen pt-4 px-12 gap-12">
+      <section className="md:px-0 w-full md:w-1/2 flex justify-center">
         {profile._id && <CreateArticle profile={profile} />}
       </section>
 
-      <article className="w-1/2">
+      <article className="w-full md:w-1/2">
         <span className="text-3xl font-bold">Feed</span>
 
-        <div>
+        <div className="flex flex-col gap-8 pt-4">
           {articles.map(article => (
-            <div
-              key={article._id}
-              className="border border-border rounded-md p-4 my-4"
-            >
-              <span>{article.content}</span>
-            </div>
+            <Card key={article._id} className="border-border">
+              <CardHeader></CardHeader>
+
+              <Separator className="w-full px-0" />
+
+              <CardContent>{article.content}</CardContent>
+            </Card>
           ))}
         </div>
       </article>
