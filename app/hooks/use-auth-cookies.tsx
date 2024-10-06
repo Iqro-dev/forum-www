@@ -18,22 +18,18 @@ export const useAuthCookies = () => {
     accessToken: cookie[ACCESS_TOKEN] as string,
     refreshToken: cookie[REFRESH_TOKEN] as string,
     setAuthAccessCookies: ({ token, expiresIn }: Token) => {
-      console.log('token', token)
       setCookies(ACCESS_TOKEN, token, {
-        maxAge: +expiresIn,
-        expires: new Date(172_000_000),
+        expires: new Date(+expiresIn * 1000),
         path: '/',
       })
 
-      setCookies(ACCESS_TOKEN_EXPIRES, new Date(Date.now() + 172_000_000), {
+      setCookies(ACCESS_TOKEN_EXPIRES, new Date(+expiresIn * 1000), {
         path: '/',
       })
     },
     setAuthRefreshCookies: ({ token, expiresIn }: Token) => {
-      console.log('token', token)
       setCookies(REFRESH_TOKEN, token, {
-        maxAge: +expiresIn,
-        expires: new Date(604_800_000),
+        expires: new Date(+expiresIn * 1000),
         path: '/',
       })
     },
