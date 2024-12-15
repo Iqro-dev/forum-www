@@ -2,11 +2,12 @@
 import { cookies } from 'next/headers'
 import { redirect } from 'next/navigation'
 
-import { isAuthenticated } from '@/utils'
 import { Profile } from '../api/types'
 import { ACCESS_TOKEN } from '../api/constants'
 import { getProfile } from '../api/fetchers/get-profile'
 import { CreateArticle } from '../components/articles/create-article'
+
+import { isAuthenticated } from '@/utils'
 
 export default async function FeedPage() {
   const authenticated = await isAuthenticated()
@@ -14,9 +15,8 @@ export default async function FeedPage() {
   if (!authenticated) return redirect('/login')
 
   const accessToken = cookies().get(ACCESS_TOKEN)?.value
-  let profile: Profile | undefined
 
-  profile = await getProfile(accessToken)
+  const profile: Profile | undefined = await getProfile(accessToken)
 
   return (
     <main className="flex flex-col items-center w-screen pt-4 gap-4">

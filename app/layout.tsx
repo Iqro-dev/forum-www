@@ -16,7 +16,7 @@ export const metadata: Metadata = {
   description: '1.0 version',
 }
 
-export default async function RootLayout({ children }: LayoutProps) {
+export default async function RootLayout({ children }: Readonly<LayoutProps>) {
   const accessToken = cookies().get(ACCESS_TOKEN)?.value
 
   const profile = await getProfile(accessToken)

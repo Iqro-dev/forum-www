@@ -1,5 +1,7 @@
 'use client'
 
+import { Archive, ArchiveX, Trash2 } from 'lucide-react'
+
 import { ProfileAvatar } from '../profile/avatar'
 import {
   Card,
@@ -8,16 +10,16 @@ import {
   CardHeader,
   CardTitle,
 } from '../ui/card'
-import { Profile } from '@/app/api/types'
 import { Textarea } from '../ui/textarea'
 import { Button } from '../ui/button'
 import { Separator } from '../ui/separator'
 import { Tooltip, TooltipContent, TooltipTrigger } from '../ui/tooltip'
-import { Archive, ArchiveX, Trash2 } from 'lucide-react'
 
-export interface CreateArticleProps {
+import { Profile } from '@/app/api/types'
+
+export type CreateArticleProps = Readonly<{
   profile?: Profile
-}
+}>
 
 export function CreateArticle({ profile }: CreateArticleProps) {
   return (

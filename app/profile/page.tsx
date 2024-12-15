@@ -1,12 +1,7 @@
 'use client'
 
 import { ProfileAvatar } from '../components/profile/avatar'
-import {
-  Card,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from '../components/ui/card'
+import { Card, CardHeader } from '../components/ui/card'
 
 export default function Profile() {
   return (

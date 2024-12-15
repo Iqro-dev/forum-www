@@ -2,6 +2,7 @@
 /* eslint-disable @typescript-eslint/no-unnecessary-condition */
 'use client'
 
+import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import * as z from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -38,7 +39,6 @@ import {
 } from '../components/ui/popover'
 
 import { cn } from '@/utils'
-import { useState } from 'react'
 
 export default function RegisterPage() {
   const [loading, setLoading] = useState(false)
@@ -183,8 +183,8 @@ export default function RegisterPage() {
                     </Popover>
 
                     <FormDescription className="text-yellow-700">
-                      Shadcn-ui hasn't yet added the feature to select years and
-                      months directly from popover.
+                      Shadcn-ui hasn&apos;t yet added the feature to select
+                      years and months directly from popover.
                     </FormDescription>
 
                     <FormMessage />
