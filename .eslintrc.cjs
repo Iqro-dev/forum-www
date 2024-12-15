@@ -44,7 +44,7 @@ module.exports = {
   plugins: ['@typescript-eslint', 'eslint-plugin-import-helpers', 'prettier'],
   extends: [
     'plugin:@next/next/recommended',
-    'plugin:typescript-eslint/recommended',
+    'plugin:@typescript-eslint/recommended',
     'plugin:react/recommended',
     'plugin:react/jsx-runtime',
     'plugin:react-hooks/recommended',
@@ -52,7 +52,7 @@ module.exports = {
     'plugin:import/recommended',
     'plugin:import/typescript',
     'plugin:jsx-a11y/recommended',
-    'plugin:sonarjs/recommended',
+    'plugin:sonarjs/recommended-legacy',
     'plugin:unicorn/recommended',
     'prettier',
   ],

@@ -3,6 +3,7 @@
 import { CaretSortIcon } from '@radix-ui/react-icons'
 import { useRouter } from 'next/navigation'
 import { useQueryClient } from '@tanstack/react-query'
+import Link from 'next/link'
 
 import { Button } from '../ui/button'
 import { ProfileAvatar } from '../profile/avatar'
@@ -16,11 +17,10 @@ import { toast } from '../ui/use-toast'
 
 import { useAuth } from '@/app/hooks/use-auth'
 import { Profile } from '@/app/api/types'
-import Link from 'next/link'
 
-export interface UserNavProps {
+export type UserNavProps = Readonly<{
   profile?: Profile
-}
+}>
 
 export function UserNav({ profile }: UserNavProps) {
   const { logout } = useAuth()

@@ -2,11 +2,11 @@ import { Avatar, AvatarImage, AvatarFallback } from '@radix-ui/react-avatar'
 
 import { cn } from '@/utils/cn'
 
-export interface ProfileAvatarProps {
+export type ProfileAvatarProps = Readonly<{
   src?: string
   displayName?: string
   className?: string
-}
+}>
 
 export function ProfileAvatar({
   src,

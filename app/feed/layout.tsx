@@ -1,5 +1,5 @@
 import { LayoutProps } from '../types/props'
-export default function FeedLayout({ children }: LayoutProps) {
+export default function FeedLayout({ children }: Readonly<LayoutProps>) {
   return (
     <div className="flex">
       <main>{children}</main>

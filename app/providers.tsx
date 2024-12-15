@@ -6,7 +6,7 @@ import { useState } from 'react'
 
 import { LayoutProps } from './types/props'
 
-export function RootProviders({ children }: LayoutProps) {
+export function RootProviders({ children }: Readonly<LayoutProps>) {
   const [queryClient] = useState(() => new QueryClient())
 
   return (

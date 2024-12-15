@@ -7,9 +7,9 @@ import { UserNav } from './user-nav'
 
 import { Profile } from '@/app/api/types'
 
-export interface NavbarProps {
+export type NavbarProps = Readonly<{
   profile?: Profile
-}
+}>
 
 export function Navbar({ profile }: NavbarProps) {
   return (
