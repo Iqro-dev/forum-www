@@ -1,6 +1,6 @@
+import { fetchApi } from '../api/fetchers/fetch-api'
 import { HttpMethod } from '../api/types'
 import { SecretData } from '../api/types/secret-data'
-import { fetchApi } from '../api/fetchers/fetch-api'
 
 import { useAuthCookies } from '@/app/hooks/use-auth-cookies'
 

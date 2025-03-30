@@ -28,7 +28,13 @@ export async function fetchApi<T = unknown, D = unknown>(
     body: JSON.stringify(data),
   })
 
-  const parsedResponse = (await response.json()) as T & { statusCode?: number }
+  const parsedResponse = (await response.json()) as T & {
+    statusCode?: number
+    ok: boolean
+  }
 
-  return { ...parsedResponse, ok: !(parsedResponse.statusCode !== undefined) }
+  parsedResponse.statusCode = response.status
+  parsedResponse.ok = response.ok
+
+  return parsedResponse
 }

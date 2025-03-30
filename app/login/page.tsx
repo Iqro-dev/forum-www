@@ -1,12 +1,13 @@
 'use client'
 
-import * as z from 'zod'
-import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { useRouter } from 'next/navigation'
-import Link from 'next/link'
 import { ReloadIcon } from '@radix-ui/react-icons'
+import Link from 'next/link'
+import { useRouter } from 'next/navigation'
+import { useForm } from 'react-hook-form'
+import * as z from 'zod'
 
+import { useState } from 'react'
 import { Button } from '../components/ui/button'
 import {
   Card,
@@ -15,7 +16,6 @@ import {
   CardHeader,
   CardTitle,
 } from '../components/ui/card'
-import { Input } from '../components/ui/input'
 import {
   Form,
   FormControl,
@@ -24,9 +24,9 @@ import {
   FormLabel,
   FormMessage,
 } from '../components/ui/form'
-import { useAuth } from '../hooks/use-auth'
+import { Input } from '../components/ui/input'
 import { useToast } from '../components/ui/use-toast'
-import { useState } from 'react'
+import { useAuth } from '../hooks/use-auth'
 
 export default function LoginPage() {
   const router = useRouter()

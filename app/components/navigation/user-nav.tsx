@@ -73,6 +73,10 @@ export function UserNav({ profile }: UserNavProps) {
           <DropdownMenuItem>Profile</DropdownMenuItem>
         </Link>
 
+        <Link href="/feed">
+          <DropdownMenuItem>Feed</DropdownMenuItem>
+        </Link>
+
         <DropdownMenuItem onClick={() => handleLogout()}>
           Log out
         </DropdownMenuItem>
